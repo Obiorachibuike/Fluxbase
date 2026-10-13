@@ -1,0 +1,92 @@
+{
+  "name": "fluxbase",
+  "version": "0.1.0",
+  "description": "TypeScript-first embedded job queue, key-value store, cache, and event bus for Node.js, with optional Redis distributed mode",
+  "license": "MIT",
+  "author": "Obiorachibuike",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Obiorachibuike/Fluxbase.git"
+  },
+  "homepage": "https://github.com/Obiorachibuike/Fluxbase#readme",
+  "bugs": {
+    "url": "https://github.com/Obiorachibuike/Fluxbase/issues"
+  },
+  "keywords": [
+    "job-queue",
+    "queue",
+    "sqlite",
+    "redis",
+    "cron",
+    "scheduler",
+    "cache",
+    "key-value",
+    "event-bus",
+    "typescript"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc -p tsconfig.test.json && tsc -p examples/tsconfig.json",
+    "test": "vitest run",
+    "test:unit": "vitest run tests/unit tests/types",
+    "test:integration": "vitest run tests/integration tests/adapters",
+    "test:reliability": "vitest run tests/reliability",
+    "test:redis": "node scripts/require-redis.mjs && vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:package": "node scripts/verify-package.mjs",
+    "lint": "eslint .",
+    "docs": "typedoc",
+    "check": "npm run typecheck && npm run lint && npm run test && npm run build",
+    "release:dry-run": "npm run check && npm run test:package && npm pack --dry-run",
+    "prepublishOnly": "npm run check"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "cron-parser": "^5.10.2",
+    "ioredis": "^6.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^22.20.5",
+    "@vitest/coverage-v8": "^5.0.4",
+    "eslint": "^9.39.5",
+    "tsup": "^8.5.1",
+    "tsx": "^4.23.15",
+    "typedoc": "^0.28.20",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.71.2",
+    "vitest": "^5.0.4"
+  }
+}
