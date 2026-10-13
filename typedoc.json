@@ -1,0 +1,11 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src/index.ts"],
+  "tsconfig": "tsconfig.json",
+  "out": "docs/api",
+  "name": "Fluxbase API",
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "readme": "none",
+  "validation": { "notExported": true, "invalidLink": true, "notDocumented": false }
+}

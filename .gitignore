@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build output and reports
+dist/
+coverage/
+docs/api/
+*.tsbuildinfo
+
+# Local data and scratch
+data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+scratch/
+tmp/
+
+# Environment and secrets. Never commit real credentials.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Editor and OS
+.DS_Store
+.idea/
+.vscode/
+*.log
+npm-debug.log*
